@@ -1,0 +1,50 @@
+
+ public class RequestPerfData
+    {
+        public DateTime ReceivedTime { get; set; }
+        public DateTime FinishedTime { get; set; }
+        public string MasterIP { get; set; }
+        public string User { get; set; }
+        public ReqType Type { get; set; }
+        public VarianceType VarianceType { get; set; }
+        public string Backbone { get; set; }
+        public List<NodeRequestPerfData> NodesPerf { get; set;}
+        public List<LogStepItemInfo> StepInfos { get; set; }
+
+        public RequestPerfData()
+        {
+            this.ReceivedTime = DateTime.Now;
+            this.FinishedTime = DateTime.Now;
+            this.MasterIP = string.Empty;
+            this.User = string.Empty;
+            this.Type = ReqType.Grid;
+            this.VarianceType = Puma.Models.OneAccount.VarianceType.AccountOnly;
+            this.Backbone = string.Empty;
+            this.NodesPerf = new List<NodeRequestPerfData>();
+            this.StepInfos = new List<LogStepItemInfo>();
+        }
+    }
+
+
+
+
+
+
+
+
+
+public class LogStepItemInfo
+    {
+        public StepType Type { get; set; }
+        public LogSteps Step { get; set; }
+        public DateTime Time { get; set; }
+        public string DetailInfo { get; set; }
+
+        public LogStepItemInfo(StepType type, LogSteps step, string detailInfo = null)
+        {
+            this.Type = type;
+            this.Step = step;
+            this.Time = DateTime.Now;
+            this.DetailInfo = detailInfo;
+        }
+    }
