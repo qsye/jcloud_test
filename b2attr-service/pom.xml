@@ -45,5 +45,11 @@
 			<artifactId>avro</artifactId>
 			<version>1.7.7</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.5</version>
+		</dependency>
 	</dependencies>
 </project>

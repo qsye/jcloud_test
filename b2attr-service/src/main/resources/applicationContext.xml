@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 	http://www.springframework.org/schema/context
-	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-	
-	<context:component-scan base-package="com.ht.b2attr.b2attr_service"/>
-	
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<context:component-scan base-package="com.ht.b2attr.b2attr_service" />
+
+
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
 			<value>classpath:app.properties</value>
 		</property>
 	</bean>
-	<bean name="sc1"
-		class="com.ht.b2attr.b2attr_service.SocketClient" init-method="listen" destroy-method="close">
+	<bean name="sc1" class="com.ht.b2attr.b2attr_service.SocketClient"
+		init-method="listen" destroy-method="close">
 		<constructor-arg value="${socket.host}" />
-		<constructor-arg value="${socket.port}"/>
+		<constructor-arg value="${socket.port}" />
 	</bean>
+
+	<!-- this is log aspect bean -->
+	<bean id="logA" class="com.ht.b2attr.b2attr_service.aspects.LogAspect" />
+
+	<aop:config>
+		<aop:aspect ref="logA">
+			<!-- defines pointcut, receive() is joinpoint -->
+			<aop:pointcut id="socketLogA"
+				expression="execution(* com.ht.b2attr.b2attr_service.SocketClient.receive(..))" />
+
+			<!-- defines advise -->
+			<aop:before pointcut-ref="socketLogA" method="before" />
+
+			<!-- defines advise -->
+			<aop:after pointcut-ref="socketLogA" method="after" />
+			
+			<!-- defines advise -->
+			<aop:around pointcut-ref="socketLogA" method="monitorReceive" />
+		</aop:aspect>
+	</aop:config>
 </beans>
