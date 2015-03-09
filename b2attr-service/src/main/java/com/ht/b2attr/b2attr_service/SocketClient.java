@@ -24,7 +24,6 @@ public class SocketClient {
 	{
 		System.out.println(MessageFormat.format(
 				"Received message={0} from socket, ip={1}, port={2}", msg, this.ip, this.port));
-
 		
 	}
 	
