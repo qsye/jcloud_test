@@ -10,7 +10,7 @@
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 	<context:component-scan base-package="com.ht.b2attr.b2attr_service" />
-
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -27,20 +27,20 @@
 	<!-- this is log aspect bean -->
 	<bean id="logA" class="com.ht.b2attr.b2attr_service.aspects.LogAspect" />
 
-	<aop:config>
+	<!-- <aop:config>
 		<aop:aspect ref="logA">
-			<!-- defines pointcut, receive() is joinpoint -->
+			defines pointcut, receive() is joinpoint
 			<aop:pointcut id="socketLogA"
 				expression="execution(* com.ht.b2attr.b2attr_service.SocketClient.receive(..))" />
 
-			<!-- defines advise -->
+			defines advise
 			<aop:before pointcut-ref="socketLogA" method="before" />
 
-			<!-- defines advise -->
+			defines advise
 			<aop:after pointcut-ref="socketLogA" method="after" />
 			
-			<!-- defines advise -->
+			defines advise
 			<aop:around pointcut-ref="socketLogA" method="monitorReceive" />
 		</aop:aspect>
-	</aop:config>
+	</aop:config> -->
 </beans>
