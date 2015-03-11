@@ -12,9 +12,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
-		testSocket();
-
-		System.gc();
+		//testSocket();
+		
+		testJDBC();
+		
+		//System.gc();
 		try {
 			System.in.read();
 		} catch (IOException e) {
@@ -39,6 +41,16 @@ public class App {
 		
 	}
 	
-	
+	private static void testJDBC()
+	{
+        ApplicationContext acx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        JDBCOrecle jdbc = (JDBCOrecle)acx.getBean("DBOperate"); 
+        //新增记录
+        jdbc.add(4, "column4");
+        //根据ID号查询
+        DataStruct ds = jdbc.getById(4);
+        System.out.println(ds.getT_id());
+        System.out.println(ds.getT_attribute());
+	}
 
 }

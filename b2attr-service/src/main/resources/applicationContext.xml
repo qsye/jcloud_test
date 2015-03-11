@@ -43,4 +43,20 @@
 			<aop:around pointcut-ref="socketLogA" method="monitorReceive" />
 		</aop:aspect>
 	</aop:config> -->
+	
+	<!-- JDBC配置 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">     
+	    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />  
+	    <property name="url" value="jdbc:oracle:thin:@172.16.128.190:1521:CC1DB" />  
+	    <property name="username" value="sh" />     
+	    <property name="password" value="sh" />  
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+		<constructor-arg ref="dataSource"/>
+	</bean>
+	<bean id="DBOperate" class="com.ht.b2attr.b2attr_service.JDBCOrecle">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+	
 </beans>
