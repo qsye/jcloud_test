@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
+import com.ht.b2attr.b2attr_service.schema.CloudTest;
+
 @SuppressWarnings("deprecation")
 public class JDBCOrecle {
 	
@@ -25,10 +27,10 @@ public class JDBCOrecle {
 	
 	
 	//根据ID号查询记录
-	public DataStruct getById(int id)
+	public CloudTest getById(int id)
 	{
 		String sql="select * from cloud_test where T_ID = ?";
-	    return jdbcTemplate.queryForObject(sql, ParameterizedBeanPropertyRowMapper.newInstance(DataStruct.class),id );
+	    return jdbcTemplate.queryForObject(sql, ParameterizedBeanPropertyRowMapper.newInstance(CloudTest.class),id );
 	}
 }
 	

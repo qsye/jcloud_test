@@ -1,8 +1,8 @@
-package com.ht.b2attr.b2attr_service;
+package com.ht.b2attr.b2attr_service.schema;
 
 import java.sql.Date;
 
-public class DataStruct {
+public class CloudTest {
 	
 	private int t_id;
     private String t_attribute;
