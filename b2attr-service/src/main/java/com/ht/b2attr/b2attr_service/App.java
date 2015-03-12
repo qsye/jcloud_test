@@ -37,7 +37,7 @@ public class App {
 		providerList.add(new JacksonJsonProvider());
 
 		JAXRSServerFactoryBean factory = new JAXRSServerFactoryBean();
-		factory.setAddress("http://localhost:8080/cloud/rest");
+		factory.setAddress("http://0.0.0.0:8080/cloud/rest");
 		factory.setResourceClasses(resourceClassList);
 		factory.setResourceProviders(resourceProviderList);
 		factory.setProviders(providerList);
