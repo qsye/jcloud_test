@@ -9,10 +9,9 @@ import org.apache.cxf.jaxrs.lifecycle.ResourceProvider;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.ht.b2attr.b2attr_service.DAO.JdbcCloudTestDAO;
+import com.ht.b2attr.b2attr_service.DAO.CloudTestDao;
 import com.ht.b2attr.b2attr_service.schema.CloudTest;
 import com.ht.b2attr.b2attr_service.service.CloudTestServiceImpl;
 
@@ -23,7 +22,7 @@ import com.ht.b2attr.b2attr_service.service.CloudTestServiceImpl;
 public class App {
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
-		// testSocket();
+		testSocket();
 
 		testJDBC();
 
@@ -63,18 +62,13 @@ public class App {
 	private static void testJDBC() {
 		// ApplicationContext acx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		// JDBCOrecle jdbc = (JDBCOrecle)acx.getBean("DBOperate");
-		// //新增记录
 		// jdbc.add(4, "column4");
-		// //根据ID号查询
 		// CloudTest ds = jdbc.getById(4);
 		// System.out.println(ds.getT_id());
 		// System.out.println(ds.getT_attribute());
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		// spring jdbc
-		JdbcCloudTestDAO dao = new JdbcCloudTestDAO();
-		dao.setJdbcTemplate((SimpleJdbcTemplate) ctx.getBean("jdbcTemplate"));
-		CloudTest ct = dao.queryById(1);
-		System.out.println(ct.getT_attribute());
+		CloudTestDao dao = ctx.getBean("jdbcCloudTestDAO", CloudTestDao.class);
 
 		CloudTest ct_insert = new CloudTest();
 		ct_insert.setT_id(4);
@@ -82,6 +76,9 @@ public class App {
 		ct_insert.setT_desc("test insert with jdbc template");
 		ct_insert.setT_attribute("column4");
 		System.out.println(dao.insertCloudTest(ct_insert) ? "insert success" : "insert failed");
+
+		CloudTest ct = dao.queryById(4);
+		System.out.println(ct.getT_attribute());
 
 		ct_insert.setT_attribute("column41");
 		ct_insert.setT_desc("test update");
@@ -91,5 +88,4 @@ public class App {
 		System.out.println(dao.deleteCloudTestById(0) ? "delete success" : "delete failed");
 		System.out.println(dao.deleteCloudTestById(4) ? "delete success" : "delete failed");
 	}
-
 }

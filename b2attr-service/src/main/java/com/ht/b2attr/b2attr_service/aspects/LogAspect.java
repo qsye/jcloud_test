@@ -9,7 +9,7 @@ import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class LogAspect {
-	@Pointcut("execution(* com.ht.b2attr.b2attr_service.SocketClient.receive(String)) && args(msg)")
+	@Pointcut("execution(* com.ht.b2attr.b2attr_service.SocketClient.receive(String)) && args(msg) ")
 	public void receive(String msg) {
 	}
 
@@ -24,7 +24,7 @@ public class LogAspect {
 	}
 
 	@Around("receive(msg)")
-	public void monitorReceive(ProceedingJoinPoint joinpoint,String msg) {
+	public void monitorReceive(ProceedingJoinPoint joinpoint, String msg) {
 		System.out.println("monitor with aop around start...");
 		System.out.println("parameters:" + joinpoint.getArgs()[0].toString());
 		try {
@@ -35,5 +35,21 @@ public class LogAspect {
 		}
 
 		System.out.println("monitor with aop around start...");
+	}
+
+	@Pointcut("execution(boolean com.ht.b2attr.b2attr_service.DAO.*.*(..))")
+	public void anyMethod() {
+
+	}
+
+	@Around("anyMethod()")
+	public boolean beforeAnyMethod(ProceedingJoinPoint joinpoint) throws Throwable {
+		System.out.println("Method name:" + joinpoint.getSignature().getName());
+		long start = System.currentTimeMillis();
+
+		joinpoint.proceed();
+		long end = System.currentTimeMillis();
+		System.out.println("cost " + (end - start) + " ms");
+		return true;
 	}
 }

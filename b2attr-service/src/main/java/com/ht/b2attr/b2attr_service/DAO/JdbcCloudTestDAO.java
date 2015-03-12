@@ -3,15 +3,18 @@ package com.ht.b2attr.b2attr_service.DAO;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import com.ht.b2attr.b2attr_service.schema.CloudTest;
 
 
-
+@Service("jdbcCloudTestDAO")
 public class JdbcCloudTestDAO implements CloudTestDao {
+	@Autowired
 	private SimpleJdbcTemplate jdbcTemplate;
 
 	public void setJdbcTemplate(SimpleJdbcTemplate jdbcTemplate) {

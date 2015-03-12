@@ -27,36 +27,24 @@
 	<!-- this is log aspect bean -->
 	<bean id="logA" class="com.ht.b2attr.b2attr_service.aspects.LogAspect" />
 
-	<!-- <aop:config>
-		<aop:aspect ref="logA">
-			defines pointcut, receive() is joinpoint
-			<aop:pointcut id="socketLogA"
-				expression="execution(* com.ht.b2attr.b2attr_service.SocketClient.receive(..))" />
+	<!-- <aop:config> <aop:aspect ref="logA"> defines pointcut, receive() is 
+		joinpoint <aop:pointcut id="socketLogA" expression="execution(* com.ht.b2attr.b2attr_service.SocketClient.receive(..))" 
+		/> defines advise <aop:before pointcut-ref="socketLogA" method="before" /> 
+		defines advise <aop:after pointcut-ref="socketLogA" method="after" /> defines 
+		advise <aop:around pointcut-ref="socketLogA" method="monitorReceive" /> </aop:aspect> 
+		</aop:config> -->
 
-			defines advise
-			<aop:before pointcut-ref="socketLogA" method="before" />
-
-			defines advise
-			<aop:after pointcut-ref="socketLogA" method="after" />
-			
-			defines advise
-			<aop:around pointcut-ref="socketLogA" method="monitorReceive" />
-		</aop:aspect>
-	</aop:config> -->
-	
 	<!-- JDBC配置 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">     
-	    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />  
-	    <property name="url" value="jdbc:oracle:thin:@172.16.128.190:1521:CC1DB" />  
-	    <property name="username" value="sh" />     
-	    <property name="password" value="sh" />  
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@172.16.128.190:1521:CC1DB" />
+		<property name="username" value="sh" />
+		<property name="password" value="sh" />
 	</bean>
-	
+
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
-		<constructor-arg ref="dataSource"/>
+		<constructor-arg ref="dataSource" />
 	</bean>
-	<bean id="DBOperate" class="com.ht.b2attr.b2attr_service.JDBCOrecle">
-		<property name="jdbcTemplate" ref="jdbcTemplate"/>
-	</bean>
-	
+
 </beans>
