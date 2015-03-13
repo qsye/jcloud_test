@@ -1,7 +1,7 @@
 package com.ht.b2attr.b2attr_service.service;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,12 +16,12 @@ public class CloudTestServiceImpl implements CloudTestService {
 		System.out.print("Get a request to method:");
 		System.out.println("retrieveAllCloudTest");
 		List<CloudTest> list = new ArrayList<CloudTest>();
-		CloudTest ds = new CloudTest();
-		ds.setT_id(1);
-		ds.setT_desc("this is a cloud test");
-		ds.setT_attribute("column3");
-		ds.setT_dt(new Date(System.currentTimeMillis()));
-		list.add(ds);
+		CloudTest ct = new CloudTest();
+		ct.setTId(1);
+		ct.setTDesc("this is a cloud test");
+		ct.setTAttribute("column3");
+		ct.setTDt(new Date());
+		list.add(ct);
 		return list;
 	}
 
@@ -29,10 +29,10 @@ public class CloudTestServiceImpl implements CloudTestService {
 		System.out.print("Get a request to method:");
 		System.out.println("retrieveCloudTestById");
 		CloudTest ct = new CloudTest();
-		ct.setT_id(1);
-		ct.setT_desc("this is a cloud test");
-		ct.setT_attribute("column3");
-		ct.setT_dt(new Date(System.currentTimeMillis()));
+		ct.setTId(1);
+		ct.setTDesc("this is a cloud test");
+		ct.setTAttribute("column3");
+		ct.setTDt(new Date());
 		return ct;
 	}
 
@@ -41,10 +41,10 @@ public class CloudTestServiceImpl implements CloudTestService {
 		System.out.println("retrieveProductsByName");
 		List<CloudTest> list = new ArrayList<CloudTest>();
 		CloudTest ct = new CloudTest();
-		ct.setT_id(1);
-		ct.setT_desc("this is a cloud test");
-		ct.setT_attribute("column3");
-		ct.setT_dt(new Date(System.currentTimeMillis()));
+		ct.setTId(1);
+		ct.setTDesc("this is a cloud test");
+		ct.setTAttribute("column3");
+		ct.setTDt(new Date());
 		list.add(ct);
 		return list;
 	}
@@ -53,10 +53,10 @@ public class CloudTestServiceImpl implements CloudTestService {
 		System.out.print("Get a request to method:");
 		System.out.println("createCloudTest");
 		CloudTest ct = new CloudTest();
-		ct.setT_id(1);
-		ct.setT_desc("this is a cloud test");
-		ct.setT_attribute("column3");
-		ct.setT_dt(new Date(System.currentTimeMillis()));
+		ct.setTId(1);
+		ct.setTDesc("this is a cloud test");
+		ct.setTAttribute("column3");
+		ct.setTDt(new Date());
 		return ct;
 	}
 
@@ -64,10 +64,10 @@ public class CloudTestServiceImpl implements CloudTestService {
 		System.out.print("Get a request to method:");
 		System.out.println("updateCloudTestById");
 		CloudTest ct = new CloudTest();
-		ct.setT_id(1);
-		ct.setT_desc("this is a cloud test");
-		ct.setT_attribute("column3");
-		ct.setT_dt(new Date(System.currentTimeMillis()));
+		ct.setTId(1);
+		ct.setTDesc("this is a cloud test");
+		ct.setTAttribute("column3");
+		ct.setTDt(new Date());
 		return ct;
 	}
 
@@ -75,10 +75,10 @@ public class CloudTestServiceImpl implements CloudTestService {
 		System.out.print("Get a request to method:");
 		System.out.println("deleteCloudTestById");
 		CloudTest ct = new CloudTest();
-		ct.setT_id(1);
-		ct.setT_desc("this is a cloud test");
-		ct.setT_attribute("column3");
-		ct.setT_dt(new Date(System.currentTimeMillis()));
+		ct.setTId(1);
+		ct.setTDesc("this is a cloud test");
+		ct.setTAttribute("column3");
+		ct.setTDt(new Date());
 		return ct;
 	}
 

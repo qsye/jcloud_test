@@ -10,7 +10,7 @@
 	<name>b2attr-service</name>
 	<url>http://maven.apache.org</url>
 
-		<properties>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<cxf.version>3.0.0</cxf.version>
 		<jackson.version>2.4.1</jackson.version>
@@ -62,14 +62,14 @@
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>1.8.0.10</version>
-		</dependency>		
-        <dependency>
-        	<groupId>oracel</groupId>
-        	<artifactId>jdbc</artifactId> 
-        	<version>4.0</version>
-        </dependency>
-        
-        <!-- CXF -->
+		</dependency>
+		<dependency>
+			<groupId>oracel</groupId>
+			<artifactId>jdbc</artifactId>
+			<version>4.0</version>
+		</dependency>
+
+		<!-- CXF -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
@@ -97,7 +97,7 @@
 			<artifactId>cxf-rt-rs-client</artifactId>
 			<version>${cxf.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
@@ -118,11 +118,29 @@
 			<artifactId>avro</artifactId>
 			<version>1.7.7</version>
 		</dependency>
-		
+
 
 	</dependencies>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.avro</groupId>
+				<artifactId>avro-maven-plugin</artifactId>
+				<version>1.7.7</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>schema</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>${project.basedir}/src/main/avro</sourceDirectory>
+							<outputDirectory>${project.basedir}/src/main/java/</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -133,5 +151,6 @@
 			</plugin>
 		</plugins>
 	</build>
-        
+
+
 </project>
