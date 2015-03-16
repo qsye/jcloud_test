@@ -40,24 +40,25 @@ public class LogAspect {
 		System.out.println("monitor with aop around start...");
 	}
 
-	@Pointcut("execution(boolean com.ht.b2attr.b2attr_service.DAO.*.*(..))")
+	@Pointcut("execution(int com.ht.b2attr.b2attr_service.DAO.*.*(..))")
 	public void anyMethod() {
 
 	}
 
-	@Around("anyMethod()")
-	public boolean beforeAnyMethod(ProceedingJoinPoint joinpoint) throws Throwable {
+	@Around(value = "anyMethod()")
+	public int beforeAnyMethod(ProceedingJoinPoint joinpoint) throws Throwable {
 		System.out.println("Method name:" + joinpoint.getSignature().getName());
 		long start = System.currentTimeMillis();
 
-		joinpoint.proceed();
+		Object obj=joinpoint.proceed();
 		long end = System.currentTimeMillis();
 		System.out.println("cost " + (end - start) + " ms");
-		return true;
+		return (Integer)obj;
 	}
-	
-	@AfterReturning(value="execution(* com.ht.b2attr.b2attr_service.DAO.*.*(boolean))",argNames="retVal",returning="retVal")
-	public void afterDAO(JoinPoint joinPoint,Object retVal){
-		System.out.println(retVal);
+
+	@AfterReturning(value = "execution(* com.ht.b2attr.b2attr_service.DAO.*.*(..))", argNames = "retVal", returning = "retVal")
+	public int afterDAO(JoinPoint joinPoint, int retVal) {
+		System.out.println("(log in afterReturning)return value:" + retVal);
+		return retVal;
 	}
 }
