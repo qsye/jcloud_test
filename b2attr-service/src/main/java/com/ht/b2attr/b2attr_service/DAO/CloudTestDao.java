@@ -1,13 +1,17 @@
 package com.ht.b2attr.b2attr_service.DAO;
 
+import java.util.List;
+
 import com.ht.b2attr.b2attr_service.schema.CloudTest;
 
 public interface CloudTestDao {
-	public CloudTest queryById(long id);
+	public List<CloudTest> queryAll();
 
-	public boolean insertCloudTest(CloudTest ct);
+	public CloudTest queryById(int id);
 
-	public boolean deleteCloudTestById(long id);
+	public int insertCloudTest(CloudTest ct);
 
-	public boolean updateCloudTest(CloudTest ct);
+	public int deleteCloudTestById(long id);
+
+	public int updateCloudTest(CloudTest ct);
 }

@@ -43,8 +43,12 @@
 		<property name="password" value="sh" />
 	</bean>
 
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 		<constructor-arg ref="dataSource" />
+	</bean>
+	<bean id="datumWriter" class="org.apache.avro.specific.SpecificDatumWriter"></bean>
+	<bean id="dataFileWriter" class="org.apache.avro.file.DataFileWriter">
+		<constructor-arg ref="datumWriter"></constructor-arg>
 	</bean>
 
 </beans>

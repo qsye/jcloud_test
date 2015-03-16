@@ -1,7 +1,10 @@
 package com.ht.b2attr.b2attr_service.aspects;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -51,5 +54,10 @@ public class LogAspect {
 		long end = System.currentTimeMillis();
 		System.out.println("cost " + (end - start) + " ms");
 		return true;
+	}
+	
+	@AfterReturning(value="execution(* com.ht.b2attr.b2attr_service.DAO.*.*(boolean))",argNames="retVal",returning="retVal")
+	public void afterDAO(JoinPoint joinPoint,Object retVal){
+		System.out.println(retVal);
 	}
 }

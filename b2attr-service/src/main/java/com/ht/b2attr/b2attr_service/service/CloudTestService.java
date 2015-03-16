@@ -1,5 +1,6 @@
 package com.ht.b2attr.b2attr_service.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public interface CloudTestService {
 	@GET
 	@Path("/cloudTests")
 	@Produces(MediaType.APPLICATION_JSON)
-	List<CloudTest> retrieveAllCloudTest();
+	byte[] retrieveAllCloudTest() throws IOException;
 
 	@GET
 	@Path("/cloudTest{id}")
@@ -30,7 +31,7 @@ public interface CloudTestService {
 	@Path("/cloudTests")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	List<CloudTest> retrieveProductsByName();
+	byte[] retrieveProductsByName() throws IOException;
 
 	@POST
 	@Path("/cloudTest")
