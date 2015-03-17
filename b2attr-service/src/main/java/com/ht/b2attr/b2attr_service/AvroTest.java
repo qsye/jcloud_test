@@ -127,6 +127,7 @@ public class AvroTest {
 		Encoder encoder = EncoderFactory.get().jsonEncoder(schema, out);
 		writer.write(dao.queryById(1), encoder);
 		encoder.flush();
+		System.out.println(out.toString());
 
 		DatumReader<CloudTest> reader = new GenericDatumReader<CloudTest>();
 		reader.setSchema(schema);
@@ -152,7 +153,8 @@ public class AvroTest {
 		Encoder encoder = EncoderFactory.get().binaryEncoder(out, null);
 		writer.write(dao.queryById(1), encoder);
 		encoder.flush();
-
+		System.out.println(out.toString());
+		
 		DatumReader<CloudTest> reader = new GenericDatumReader<CloudTest>();
 		reader.setSchema(schema);
 		Decoder decoder = DecoderFactory.get().binaryDecoder(out.toByteArray(), null);
