@@ -23,8 +23,6 @@ import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.cxf.jaxrs.client.WebClient;
 
 import com.alibaba.fastjson.JSON;
-import com.github.kevinsawicki.http.HttpRequest;
-import com.ht.b2attr.b2attr_service.util.DateUtil;
 
 /**
  * Unit test for simple App.
@@ -89,16 +87,10 @@ public class AppTest extends TestCase {
 		fieldMap.put("t_desc", "this is desc");
 		fieldMap.put("t_dt", new Date().toString());
 
-		HttpRequest request = HttpRequest.post("http://172.16.25.37:8080/cloud/rest/cCloudTest/10").acceptJson().contentType("application/json");
-		request.send(JSON.toJSONString(fieldMap));
-		System.out.println(request.contentType());
-		int code = request.code();
-		System.out.println(code);
-
-		OutputStream out = new ByteArrayOutputStream();
-		request.receive(out);
-		System.out.println(out.toString());
-		assertEquals(1 + "", out.toString());
+		int result = WebClient.create("http://172.16.25.37:8080/cloud/rest/cCloudTest/10").accept(MediaType.APPLICATION_JSON).header("content-type", "application/json")
+				.post(JSON.toJSONString(fieldMap), int.class);
+		System.out.println(result);
+		assertEquals(1, result);
 	}
 
 	public void testUpdate() {
@@ -108,21 +100,15 @@ public class AppTest extends TestCase {
 		fieldMap.put("t_desc", "this is desc update");
 		fieldMap.put("t_dt", new Date().toString());
 
-		HttpRequest request = HttpRequest.post("http://172.16.25.37:8080/cloud/rest/uCloudTest/10").acceptJson().contentType("application/json");
-		request.send(JSON.toJSONString(fieldMap));
-		System.out.println(request.contentType());
-		int code = request.code();
-		System.out.println(code);
-
-		OutputStream out = new ByteArrayOutputStream();
-		request.receive(out);
-		System.out.println(out.toString());
-		assertEquals(1 + "", out.toString());
+		int result = WebClient.create("http://172.16.25.37:8080/cloud/rest/uCloudTest/10").accept(MediaType.APPLICATION_JSON).header("content-type", "application/json")
+				.post(JSON.toJSONString(fieldMap), int.class);
+		System.out.println(result);
+		assertEquals(1, result);
 	}
 
 	public void testDelete() {
 		String baseAddress = "http://172.16.25.37:8080/cloud/rest";
 		Response response = WebClient.create(baseAddress).path("/dCloudTest/10").accept(MediaType.APPLICATION_JSON).delete();
-		System.out.println(JSON.toJSONString(response));
+		System.out.println(response.getStatus());
 	}
 }

@@ -3,7 +3,6 @@ package com.ht.b2attr.b2attr_service.service;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -99,9 +98,9 @@ public class CloudTestServiceImpl implements CloudTestService {
 	public Response deleteCloudTestById(int id) {
 		System.out.print("Get a request to method:");
 		System.out.println("deleteCloudTestById");
-		if(jdbcCloudTestDAO.deleteCloudTestById(id)>0){
+		if (jdbcCloudTestDAO.deleteCloudTestById(id) > 0) {
 			return Response.ok().build();
-		}else{
+		} else {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
 	}
