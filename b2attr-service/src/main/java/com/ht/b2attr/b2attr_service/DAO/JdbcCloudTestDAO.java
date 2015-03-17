@@ -2,6 +2,7 @@ package com.ht.b2attr.b2attr_service.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,18 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.ht.b2attr.b2attr_service.schema.CloudTest;
+
 /**
  * The impl of the DAO which for jdbc.
+ * 
  * @author Cloud_team
  *
  */
@@ -49,7 +47,8 @@ public class JdbcCloudTestDAO implements CloudTestDao {
 			@Override
 			public CloudTest extractData(ResultSet rs) throws SQLException, DataAccessException {
 				while (rs.next()) {
-					CloudTest ct = new CloudTest(rs.getInt("t_id"), rs.getString("t_attribute"), rs.getString("t_desc"), rs.getDate("t_dt"));
+					Date dt = rs.getDate("t_dt");
+					CloudTest ct = new CloudTest(rs.getInt("t_id"), rs.getString("t_attribute"), rs.getString("t_desc"), dt);
 					return ct;
 				}
 				throw new SQLException("Did not has any data was queryed");

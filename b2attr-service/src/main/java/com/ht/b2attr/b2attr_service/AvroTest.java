@@ -43,8 +43,10 @@ public class AvroTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Schema schema = ReflectData.get().getSchema(CloudTest.class);
-		Schema listSchema = ReflectData.get().getSchema(CloudTestsList.class);
+//		Schema schema = ReflectData.get().getSchema(CloudTest.class);
+//		Schema listSchema = ReflectData.get().getSchema(CloudTestsList.class);
+		Schema schema =CloudTest.SCHEMA$;
+		Schema listSchema=CloudTestsList.SCHEMA$;
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("ApplicationContext.xml");
 		CloudTestDao dao = ctx.getBean("jdbcCloudTestDAO", CloudTestDao.class);
 		try {
@@ -125,8 +127,11 @@ public class AvroTest {
 		writer.setSchema(schema);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		Encoder encoder = EncoderFactory.get().jsonEncoder(schema, out);
-		writer.write(dao.queryById(1), encoder);
+		CloudTest ct=dao.queryById(1);
+		System.out.println(ct);
+		writer.write(ct, encoder);
 		encoder.flush();
+		out.close();
 		System.out.println(out.toString());
 
 		DatumReader<CloudTest> reader = new GenericDatumReader<CloudTest>();
@@ -153,6 +158,7 @@ public class AvroTest {
 		Encoder encoder = EncoderFactory.get().binaryEncoder(out, null);
 		writer.write(dao.queryById(1), encoder);
 		encoder.flush();
+		out.close();
 		System.out.println(out.toString());
 		
 		DatumReader<CloudTest> reader = new GenericDatumReader<CloudTest>();
