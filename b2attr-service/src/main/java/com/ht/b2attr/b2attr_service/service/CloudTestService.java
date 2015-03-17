@@ -1,6 +1,7 @@
 package com.ht.b2attr.b2attr_service.service;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.ht.b2attr.b2attr_service.schema.CloudTest;
 
@@ -25,30 +27,24 @@ public interface CloudTestService {
 	@GET
 	@Path("/cloudTest{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	CloudTest retrieveCloudTestById(@PathParam("id") long id);
+	byte[] retrieveCloudTestById(@PathParam("id") int id) throws IOException;
 
 	@POST
-	@Path("/cloudTests")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Path("/cCloudTest/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	byte[] retrieveProductsByName() throws IOException;
+	int createCloudTest(@PathParam("id") int id, Map<String, Object> fieldMap) throws ParseException;
 
 	@POST
-	@Path("/cloudTest")
+	@Path("/uCloudTest/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	CloudTest createCloudTest();
-
-	@PUT
-	@Path("/product/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	CloudTest updateCloudTestById(@PathParam("id") long id, Map<String, Object> fieldMap);
+	int updateCloudTestById(@PathParam("id") int id, Map<String, Object> fieldMap) throws ParseException;
 
 	@DELETE
-	@Path("/product/{id}")
+	@Path("/dCloudTest/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	CloudTest deleteCloudTestById(@PathParam("id") long id);
+	Response deleteCloudTestById(@PathParam("id") int id);
 
 	@GET
 	@Path("/xml")
