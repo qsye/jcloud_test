@@ -1,8 +1,6 @@
 package com.ht.b2attr.b2attr_service;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,6 +64,7 @@ public class AppTest extends TestCase {
 				SpecificRecordBase ct = null;
 				ct = dataFileReader.next(ct);
 				System.out.println(ct);
+				System.out.println(ct.getClass().getName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,6 +109,6 @@ public class AppTest extends TestCase {
 		String baseAddress = "http://172.16.25.37:8080/cloud/rest";
 		Response response = WebClient.create(baseAddress).path("/dCloudTest/10").accept(MediaType.APPLICATION_JSON).delete();
 		System.out.println(response.getStatus());
-		assertEquals(400, response.getStatus());
+		assertEquals(200, response.getStatus());
 	}
 }
