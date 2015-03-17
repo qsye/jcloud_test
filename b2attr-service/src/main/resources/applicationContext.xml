@@ -12,6 +12,7 @@
 	<context:component-scan base-package="com.ht.b2attr.b2attr_service" />
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
+
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
@@ -43,7 +44,8 @@
 		<property name="password" value="sh" />
 	</bean>
 
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
 		<constructor-arg ref="dataSource" />
 	</bean>
 	<bean id="datumWriter" class="org.apache.avro.specific.SpecificDatumWriter"></bean>
@@ -51,4 +53,14 @@
 		<constructor-arg ref="datumWriter"></constructor-arg>
 	</bean>
 
+	<context:mbean-server />
+	<context:mbean-export server="mbeanServer" />
+	<bean id="mbeanExporter" class="org.springframework.jmx.export.MBeanExporter">
+		<property name="beans">
+			<map>
+				<entry key="spitter:name=MBeanCenter" value-ref="MBeanCenter"></entry>
+				
+			</map>
+		</property>
+	</bean>
 </beans>
