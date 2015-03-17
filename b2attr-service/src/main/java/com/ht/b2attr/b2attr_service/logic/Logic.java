@@ -25,11 +25,8 @@ public class Logic {
 	// injection by spring
 	@Autowired
 	private CloudTestDao jdbcCloudTestDAO;
-	// injection by spring
-	@Autowired
-	private DataFileWriter<SpecificRecordBase> dataFileWriter;
 
-	public byte[] retrieveAllCloudTest() throws IOException {
+	public CloudTestsList retrieveAllCloudTest() throws IOException {
 
 		System.out.print("Get a request to method:");
 		System.out.println("retrieveAllCloudTest");
@@ -42,18 +39,11 @@ public class Logic {
 		// ct.setTDesc("desc");
 		// list.add(ct);
 		// }
-		CloudTestsList cloudTestsList = new CloudTestsList(list);
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		return new CloudTestsList(list);
 
-		dataFileWriter.create(CloudTestsList.SCHEMA$, outputStream);
-		dataFileWriter.append(cloudTestsList);
-		dataFileWriter.close();
-		System.out.println(outputStream.toString());
-
-		return outputStream.toByteArray();
 	}
 
-	public byte[] retrieveCloudTestById(int id) throws IOException {
+	public CloudTest retrieveCloudTestById(int id) throws IOException {
 		System.out.print("Get a request to method:");
 		System.out.println("retrieveCloudTestById");
 		// CloudTest ct = new CloudTest();
@@ -62,12 +52,8 @@ public class Logic {
 		// ct.setTAttribute("column3");
 		// ct.setTDt(new Date());
 		// return ct;
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-		dataFileWriter.create(CloudTest.SCHEMA$, outputStream);
-		dataFileWriter.append(jdbcCloudTestDAO.queryById(id));
-		dataFileWriter.close();
-		return outputStream.toByteArray();
+		return jdbcCloudTestDAO.queryById(id);
+		
 	}
 
 	public int createCloudTest(int id, Map<String, Object> fieldMap) throws ParseException {
