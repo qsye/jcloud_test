@@ -2,7 +2,11 @@ package com.ht.b2attr.b2attr_service;
 
 import java.text.MessageFormat;
 
-
+/**
+ * Schema for test spring AOP and DI
+ * @author Cloud_team
+ *
+ */
 public class SocketClient {
 
 	private String ip;

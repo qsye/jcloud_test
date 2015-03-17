@@ -9,7 +9,11 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-
+/**
+ * It is the aspect of AOP.
+ * @author Cloud_team
+ *
+ */
 @Aspect
 public class LogAspect {
 	@Pointcut("execution(* com.ht.b2attr.b2attr_service.SocketClient.receive(String)) && args(msg) ")

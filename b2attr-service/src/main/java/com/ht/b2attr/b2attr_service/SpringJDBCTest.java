@@ -8,6 +8,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.ht.b2attr.b2attr_service.DAO.CloudTestDao;
 import com.ht.b2attr.b2attr_service.schema.CloudTest;
+/**
+ * It is a case of spring jdbc template test. It test insert/update/delete/query from DB.
+ * @author Cloud_team.
+ *
+ */
 
 public class SpringJDBCTest {
 

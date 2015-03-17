@@ -13,8 +13,9 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.ht.b2attr.b2attr_service.service.CloudTestServiceImpl;
 
 /**
- * Hello world!
+ * It is a case of RESTful/cxf(jetty) test. It start a listener of http.
  *
+ * @author Cloud_team
  */
 public class App {
 	public static void main(String[] args) {
@@ -28,7 +29,7 @@ public class App {
 		resourceClassList.add(CloudTestServiceImpl.class);
 
 		List<ResourceProvider> resourceProviderList = new ArrayList<ResourceProvider>();
-		resourceProviderList.add(new SingletonResourceProvider(ctx.getBean("cloudTestServiceImpl",CloudTestServiceImpl.class)));
+		resourceProviderList.add(new SingletonResourceProvider(ctx.getBean("cloudTestServiceImpl", CloudTestServiceImpl.class)));
 
 		List<Object> providerList = new ArrayList<Object>();
 		providerList.add(new JacksonJsonProvider());

@@ -20,7 +20,11 @@ import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.ht.b2attr.b2attr_service.schema.CloudTest;
-
+/**
+ * The impl of the DAO which for jdbc.
+ * @author Cloud_team
+ *
+ */
 @Service("jdbcCloudTestDAO")
 public class JdbcCloudTestDAO implements CloudTestDao {
 

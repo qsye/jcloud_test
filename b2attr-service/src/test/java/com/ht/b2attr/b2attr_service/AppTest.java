@@ -110,5 +110,6 @@ public class AppTest extends TestCase {
 		String baseAddress = "http://172.16.25.37:8080/cloud/rest";
 		Response response = WebClient.create(baseAddress).path("/dCloudTest/10").accept(MediaType.APPLICATION_JSON).delete();
 		System.out.println(response.getStatus());
+		assertEquals(400, response.getStatus());
 	}
 }

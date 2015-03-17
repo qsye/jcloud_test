@@ -31,8 +31,17 @@ import com.ht.b2attr.b2attr_service.DAO.CloudTestDao;
 import com.ht.b2attr.b2attr_service.schema.CloudTest;
 import com.ht.b2attr.b2attr_service.schema.CloudTestsList;
 
+/**
+ * It is a case of avro test. It test serialize object to avro string and deserialize avro string to object.
+ * 
+ * @author Cloud_team
+ *
+ */
 public class AvroTest {
-
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Schema schema = ReflectData.get().getSchema(CloudTest.class);
 		Schema listSchema = ReflectData.get().getSchema(CloudTestsList.class);
@@ -41,15 +50,24 @@ public class AvroTest {
 		try {
 			System.out.println("multiple===========================");
 			testMultiple(listSchema, dao);
-			// System.out.println("single===========================");
-			// testSingleJson(schema, dao);
-			// System.out.println("singleBinary===========================");
-			// testSingleBinary(schema, dao);
+			System.out.println("single===========================");
+			testSingleJson(schema, dao);
+			System.out.println("singleBinary===========================");
+			testSingleBinary(schema, dao);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Test serialize object to avro string. It could serialize one or any object with single schema.
+	 * 
+	 * @param schema
+	 *            is the schema should be transfer.
+	 * @param dao
+	 *            is the operater of jdbc.
+	 * @throws IOException
+	 */
 	public static void testMultiple(Schema schema, CloudTestDao dao) throws IOException {
 
 		DatumWriter<CloudTestsList> ctDatumWriter = new SpecificDatumWriter<CloudTestsList>();
@@ -66,10 +84,8 @@ public class AvroTest {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		dataFileWriter.create(schema, outputStream);
 		// dataFileWriter.create(schema, file);
-		// dataFileWriter.append(dao.queryById(1));
-		// dataFileWriter.append(dao.queryById(2));
-		// dataFileWriter.append(dao.queryById(3));
 		List<CloudTest> list = new ArrayList<CloudTest>();
+		// List<CloudTest> list=dao.queryAll();
 		for (int i = 0; i < 3; i++) {
 			CloudTest ct = new CloudTest();
 			ct.setTId(i);
@@ -94,6 +110,15 @@ public class AvroTest {
 		}
 	}
 
+	/**
+	 * Test serialize object to avro json string. It could serialize single object.
+	 * 
+	 * @param schema
+	 *            is the schema should be transfer.
+	 * @param dao
+	 *            is the operater of jdbc.
+	 * @throws IOException
+	 */
 	public static void testSingleJson(Schema schema, CloudTestDao dao) throws IOException {
 
 		DatumWriter<CloudTest> writer = new GenericDatumWriter<CloudTest>();
@@ -110,7 +135,15 @@ public class AvroTest {
 		System.out.println(result);
 
 	}
-
+	/**
+	 * Test serialize object to avro binary string. It could serialize single object.
+	 * 
+	 * @param schema
+	 *            is the schema should be transfer.
+	 * @param dao
+	 *            is the operater of jdbc.
+	 * @throws IOException
+	 */
 	public static void testSingleBinary(Schema schema, CloudTestDao dao) throws IOException {
 
 		DatumWriter<CloudTest> writer = new GenericDatumWriter<CloudTest>();

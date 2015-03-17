@@ -22,12 +22,13 @@ import com.ht.b2attr.b2attr_service.util.DateUtil;
 
 @Component
 public class CloudTestServiceImpl implements CloudTestService {
-
+	// injection by spring
 	@Autowired
 	private CloudTestDao jdbcCloudTestDAO;
+	// injection by spring
 	@Autowired
 	private DataFileWriter<SpecificRecordBase> dataFileWriter;
-
+	
 	public byte[] retrieveAllCloudTest() throws IOException {
 
 		System.out.print("Get a request to method:");
