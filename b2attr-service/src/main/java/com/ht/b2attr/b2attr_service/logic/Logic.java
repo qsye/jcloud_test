@@ -15,22 +15,22 @@ import org.apache.avro.specific.SpecificRecordBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ht.b2attr.b2attr_service.DAO.CloudTestDao;
-import com.ht.b2attr.b2attr_service.schema.CloudTest;
-import com.ht.b2attr.b2attr_service.schema.CloudTestsList;
+import com.ht.b2attr.b2attr_service.DAO.BltNoLeverageColumnDao;
+import com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn;
+import com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumnList;
 import com.ht.b2attr.b2attr_service.util.DateUtil;
 
 @Component
 public class Logic {
 	// injection by spring
 	@Autowired
-	private CloudTestDao jdbcCloudTestDAO;
+	private BltNoLeverageColumnDao jdbcCloudTestDAO;
 
-	public CloudTestsList retrieveAllCloudTest() throws IOException {
+	public BltNoLeverageColumnList retrieveAllCloudTest() throws IOException {
 
 		System.out.print("Get a request to method:");
 		System.out.println("retrieveAllCloudTest");
-		List<CloudTest> list = jdbcCloudTestDAO.queryAll();
+		List<BltNoLeverageColumn> list = jdbcCloudTestDAO.queryAll();
 		// for (int i = 1; i < 3; i++) {
 		// CloudTest ct = new CloudTest();
 		// ct.setTId(i);
@@ -39,11 +39,11 @@ public class Logic {
 		// ct.setTDesc("desc");
 		// list.add(ct);
 		// }
-		return new CloudTestsList(list);
+		return new BltNoLeverageColumnList(list);
 
 	}
 
-	public CloudTest retrieveCloudTestById(int id) throws IOException {
+	public BltNoLeverageColumn retrieveCloudTestById(int id) throws IOException {
 		System.out.print("Get a request to method:");
 		System.out.println("retrieveCloudTestById");
 		// CloudTest ct = new CloudTest();
@@ -61,7 +61,7 @@ public class Logic {
 		System.out.println("createCloudTest");
 		System.out.println(id);
 		System.out.println(fieldMap);
-		CloudTest ct = new CloudTest();
+		BltNoLeverageColumn ct = new BltNoLeverageColumn();
 		ct.setTId(id);
 		ct.setTDesc(fieldMap.get("t_desc").toString());
 		ct.setTAttribute(fieldMap.get("t_attribute").toString());
@@ -73,7 +73,7 @@ public class Logic {
 	public int updateCloudTestById(int id, Map<String, Object> fieldMap) throws ParseException {
 		System.out.print("Get a request to method:");
 		System.out.println("updateCloudTestById");
-		CloudTest ct = new CloudTest();
+		BltNoLeverageColumn ct = new BltNoLeverageColumn();
 		ct.setTId(id);
 		ct.setTDesc(fieldMap.get("t_desc").toString());
 		ct.setTAttribute(fieldMap.get("t_attribute").toString());

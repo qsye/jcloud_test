@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
 
-import com.ht.b2attr.b2attr_service.DAO.CloudTestDao;
+import com.ht.b2attr.b2attr_service.DAO.BltNoLeverageColumnDao;
 
 @Component
 @ManagedResource(objectName = "spitter:name=MBeanCenter")
 public class MBeanCenter {
 	@Autowired
-	private CloudTestDao jdbcCloudTestDAO;
+	private BltNoLeverageColumnDao jdbcCloudTestDAO;
 
 	@ManagedOperation
 	public String getCloudTestAttribute(int id) {

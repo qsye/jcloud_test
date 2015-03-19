@@ -6,8 +6,8 @@
 package com.ht.b2attr.b2attr_service.schema;  
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
-public class CloudTest extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"CloudTest\",\"namespace\":\"com.ht.b2attr.b2attr_service.schema\",\"fields\":[{\"name\":\"t_id\",\"type\":\"int\"},{\"name\":\"t_attribute\",\"type\":\"string\"},{\"name\":\"t_desc\",\"type\":[\"string\",\"null\"]},{\"name\":\"t_dt\",\"type\":{\"type\":\"record\",\"name\":\"Date\",\"namespace\":\"java.util\",\"fields\":[]}}]}");
+public class BltNoLeverageColumn extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"BltNoLeverageColumn\",\"namespace\":\"com.ht.b2attr.b2attr_service.schema\",\"fields\":[{\"name\":\"t_id\",\"type\":\"int\"},{\"name\":\"t_attribute\",\"type\":\"string\"},{\"name\":\"t_desc\",\"type\":[\"string\",\"null\"]},{\"name\":\"t_dt\",\"type\":{\"type\":\"record\",\"name\":\"Date\",\"namespace\":\"java.util\",\"fields\":[]}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   @Deprecated public int t_id;
   @Deprecated public java.lang.CharSequence t_attribute;
@@ -19,12 +19,12 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>. 
    */
-  public CloudTest() {}
+  public BltNoLeverageColumn() {}
 
   /**
    * All-args constructor.
    */
-  public CloudTest(java.lang.Integer t_id, java.lang.CharSequence t_attribute, java.lang.CharSequence t_desc, java.util.Date t_dt) {
+  public BltNoLeverageColumn(java.lang.Integer t_id, java.lang.CharSequence t_attribute, java.lang.CharSequence t_desc, java.util.Date t_dt) {
     this.t_id = t_id;
     this.t_attribute = t_attribute;
     this.t_desc = t_desc;
@@ -115,25 +115,25 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
   }
 
   /** Creates a new CloudTest RecordBuilder */
-  public static com.ht.b2attr.b2attr_service.schema.CloudTest.Builder newBuilder() {
-    return new com.ht.b2attr.b2attr_service.schema.CloudTest.Builder();
+  public static com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder newBuilder() {
+    return new com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder();
   }
   
   /** Creates a new CloudTest RecordBuilder by copying an existing Builder */
-  public static com.ht.b2attr.b2attr_service.schema.CloudTest.Builder newBuilder(com.ht.b2attr.b2attr_service.schema.CloudTest.Builder other) {
-    return new com.ht.b2attr.b2attr_service.schema.CloudTest.Builder(other);
+  public static com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder newBuilder(com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder other) {
+    return new com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder(other);
   }
   
   /** Creates a new CloudTest RecordBuilder by copying an existing CloudTest instance */
-  public static com.ht.b2attr.b2attr_service.schema.CloudTest.Builder newBuilder(com.ht.b2attr.b2attr_service.schema.CloudTest other) {
-    return new com.ht.b2attr.b2attr_service.schema.CloudTest.Builder(other);
+  public static com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder newBuilder(com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn other) {
+    return new com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder(other);
   }
   
   /**
    * RecordBuilder for CloudTest instances.
    */
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<CloudTest>
-    implements org.apache.avro.data.RecordBuilder<CloudTest> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<BltNoLeverageColumn>
+    implements org.apache.avro.data.RecordBuilder<BltNoLeverageColumn> {
 
     private int t_id;
     private java.lang.CharSequence t_attribute;
@@ -142,11 +142,11 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
 
     /** Creates a new Builder */
     private Builder() {
-      super(com.ht.b2attr.b2attr_service.schema.CloudTest.SCHEMA$);
+      super(com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.SCHEMA$);
     }
     
     /** Creates a Builder by copying an existing Builder */
-    private Builder(com.ht.b2attr.b2attr_service.schema.CloudTest.Builder other) {
+    private Builder(com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.t_id)) {
         this.t_id = data().deepCopy(fields()[0].schema(), other.t_id);
@@ -167,8 +167,8 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Creates a Builder by copying an existing CloudTest instance */
-    private Builder(com.ht.b2attr.b2attr_service.schema.CloudTest other) {
-            super(com.ht.b2attr.b2attr_service.schema.CloudTest.SCHEMA$);
+    private Builder(com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn other) {
+            super(com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.SCHEMA$);
       if (isValidValue(fields()[0], other.t_id)) {
         this.t_id = data().deepCopy(fields()[0].schema(), other.t_id);
         fieldSetFlags()[0] = true;
@@ -193,7 +193,7 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Sets the value of the 't_id' field */
-    public com.ht.b2attr.b2attr_service.schema.CloudTest.Builder setTId(int value) {
+    public com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder setTId(int value) {
       validate(fields()[0], value);
       this.t_id = value;
       fieldSetFlags()[0] = true;
@@ -206,7 +206,7 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Clears the value of the 't_id' field */
-    public com.ht.b2attr.b2attr_service.schema.CloudTest.Builder clearTId() {
+    public com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder clearTId() {
       fieldSetFlags()[0] = false;
       return this;
     }
@@ -217,7 +217,7 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Sets the value of the 't_attribute' field */
-    public com.ht.b2attr.b2attr_service.schema.CloudTest.Builder setTAttribute(java.lang.CharSequence value) {
+    public com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder setTAttribute(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.t_attribute = value;
       fieldSetFlags()[1] = true;
@@ -230,7 +230,7 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Clears the value of the 't_attribute' field */
-    public com.ht.b2attr.b2attr_service.schema.CloudTest.Builder clearTAttribute() {
+    public com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder clearTAttribute() {
       t_attribute = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -242,7 +242,7 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Sets the value of the 't_desc' field */
-    public com.ht.b2attr.b2attr_service.schema.CloudTest.Builder setTDesc(java.lang.CharSequence value) {
+    public com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder setTDesc(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.t_desc = value;
       fieldSetFlags()[2] = true;
@@ -255,7 +255,7 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Clears the value of the 't_desc' field */
-    public com.ht.b2attr.b2attr_service.schema.CloudTest.Builder clearTDesc() {
+    public com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder clearTDesc() {
       t_desc = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -267,7 +267,7 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Sets the value of the 't_dt' field */
-    public com.ht.b2attr.b2attr_service.schema.CloudTest.Builder setTDt(java.util.Date value) {
+    public com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder setTDt(java.util.Date value) {
       validate(fields()[3], value);
       this.t_dt = value;
       fieldSetFlags()[3] = true;
@@ -280,16 +280,16 @@ public class CloudTest extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Clears the value of the 't_dt' field */
-    public com.ht.b2attr.b2attr_service.schema.CloudTest.Builder clearTDt() {
+    public com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn.Builder clearTDt() {
       t_dt = null;
       fieldSetFlags()[3] = false;
       return this;
     }
 
     @Override
-    public CloudTest build() {
+    public BltNoLeverageColumn build() {
       try {
-        CloudTest record = new CloudTest();
+        BltNoLeverageColumn record = new BltNoLeverageColumn();
         record.t_id = fieldSetFlags()[0] ? this.t_id : (java.lang.Integer) defaultValue(fields()[0]);
         record.t_attribute = fieldSetFlags()[1] ? this.t_attribute : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.t_desc = fieldSetFlags()[2] ? this.t_desc : (java.lang.CharSequence) defaultValue(fields()[2]);

@@ -8,6 +8,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -18,33 +19,27 @@ import javax.ws.rs.core.Response;
  * @author Cloud_team
  *
  */
-public interface CloudTestService {
+public interface BltNoLeverageColumnService {
 	@GET
-	@Path("/cloudTests")
+	@Path("/BltNoLColumns")
 	@Produces(MediaType.APPLICATION_JSON)
-	byte[] retrieveAllCloudTest() throws IOException;
+	byte[] retrieveAllBltNoLColumns() throws IOException;
 
 	@GET
-	@Path("/cloudTest{id}")
+	@Path("/BltNoLColumns/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	byte[] retrieveCloudTestById(@PathParam("id") int id) throws IOException;
+	byte[] retrieveBltNoLColumn(@PathParam("id") int id) throws IOException;
 
 	@POST
-	@Path("/cCloudTest/{id}")
+	@Path("/BltNoLColumns/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	int createCloudTest(@PathParam("id") int id, Map<String, Object> fieldMap) throws ParseException;
-
-	@POST
-	@Path("/uCloudTest/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	int updateCloudTestById(@PathParam("id") int id, Map<String, Object> fieldMap) throws ParseException;
+	int updateBltNoColumn(@PathParam("id") int id, Map<String, Object> fieldMap) throws ParseException;
 
 	@DELETE
-	@Path("/dCloudTest/{id}")
+	@Path("/BltNoLColumns/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	Response deleteCloudTestById(@PathParam("id") int id);
+	Response deleteBltNoLColumn(@PathParam("id") int id);
 
 	@GET
 	@Path("/xml")

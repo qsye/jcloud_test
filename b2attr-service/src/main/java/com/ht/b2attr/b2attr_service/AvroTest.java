@@ -27,9 +27,9 @@ import org.apache.avro.specific.SpecificDatumWriter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.ht.b2attr.b2attr_service.DAO.CloudTestDao;
-import com.ht.b2attr.b2attr_service.schema.CloudTest;
-import com.ht.b2attr.b2attr_service.schema.CloudTestsList;
+import com.ht.b2attr.b2attr_service.DAO.BltNoLeverageColumnDao;
+import com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn;
+import com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumnList;
 
 /**
  * It is a case of avro test. It test serialize object to avro string and deserialize avro string to object.
@@ -45,10 +45,10 @@ public class AvroTest {
 	public static void main(String[] args) {
 //		Schema schema = ReflectData.get().getSchema(CloudTest.class);
 //		Schema listSchema = ReflectData.get().getSchema(CloudTestsList.class);
-		Schema schema =CloudTest.SCHEMA$;
-		Schema listSchema=CloudTestsList.SCHEMA$;
+		Schema schema =BltNoLeverageColumn.SCHEMA$;
+		Schema listSchema=BltNoLeverageColumnList.SCHEMA$;
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("ApplicationContext.xml");
-		CloudTestDao dao = ctx.getBean("jdbcCloudTestDAO", CloudTestDao.class);
+		BltNoLeverageColumnDao dao = ctx.getBean("jdbcCloudTestDAO", BltNoLeverageColumnDao.class);
 		try {
 			System.out.println("multiple===========================");
 			testMultiple(listSchema, dao);
@@ -70,10 +70,10 @@ public class AvroTest {
 	 *            is the operater of jdbc.
 	 * @throws IOException
 	 */
-	public static void testMultiple(Schema schema, CloudTestDao dao) throws IOException {
+	public static void testMultiple(Schema schema, BltNoLeverageColumnDao dao) throws IOException {
 
-		DatumWriter<CloudTestsList> ctDatumWriter = new SpecificDatumWriter<CloudTestsList>();
-		DataFileWriter<CloudTestsList> dataFileWriter = new DataFileWriter<CloudTestsList>(ctDatumWriter);
+		DatumWriter<BltNoLeverageColumnList> ctDatumWriter = new SpecificDatumWriter<BltNoLeverageColumnList>();
+		DataFileWriter<BltNoLeverageColumnList> dataFileWriter = new DataFileWriter<BltNoLeverageColumnList>(ctDatumWriter);
 
 		// File dir = new File("d:\\avro\\");
 		// if (!dir.exists()) {
@@ -86,10 +86,10 @@ public class AvroTest {
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		dataFileWriter.create(schema, outputStream);
 		// dataFileWriter.create(schema, file);
-		List<CloudTest> list = new ArrayList<CloudTest>();
+		List<BltNoLeverageColumn> list = new ArrayList<BltNoLeverageColumn>();
 		// List<CloudTest> list=dao.queryAll();
 		for (int i = 0; i < 3; i++) {
-			CloudTest ct = new CloudTest();
+			BltNoLeverageColumn ct = new BltNoLeverageColumn();
 			ct.setTId(i);
 			ct.setTDt(new Date());
 			ct.setTAttribute("attr");
@@ -97,16 +97,16 @@ public class AvroTest {
 			// dataFileWriter.append(ct);
 			list.add(ct);
 		}
-		CloudTestsList cts = new CloudTestsList(list);
+		BltNoLeverageColumnList cts = new BltNoLeverageColumnList(list);
 		dataFileWriter.append(cts);
 		dataFileWriter.close();
 		System.out.println(outputStream.toString());
 		SeekableInput sin = new SeekableByteArrayInput(outputStream.toByteArray());
-		DatumReader<CloudTestsList> ctDatumReader = new SpecificDatumReader<CloudTestsList>();
+		DatumReader<BltNoLeverageColumnList> ctDatumReader = new SpecificDatumReader<BltNoLeverageColumnList>();
 		// DataFileReader<CloudTest> dataFileReader = new DataFileReader<CloudTest>(file, ctDatumReader);
-		DataFileReader<CloudTestsList> dataFileReader = new DataFileReader<CloudTestsList>(sin, ctDatumReader);
+		DataFileReader<BltNoLeverageColumnList> dataFileReader = new DataFileReader<BltNoLeverageColumnList>(sin, ctDatumReader);
 		while (dataFileReader.hasNext()) {
-			CloudTestsList ct = null;
+			BltNoLeverageColumnList ct = null;
 			ct = dataFileReader.next(ct);
 			System.out.println(ct);
 		}
@@ -121,20 +121,20 @@ public class AvroTest {
 	 *            is the operater of jdbc.
 	 * @throws IOException
 	 */
-	public static void testSingleJson(Schema schema, CloudTestDao dao) throws IOException {
+	public static void testSingleJson(Schema schema, BltNoLeverageColumnDao dao) throws IOException {
 
-		DatumWriter<CloudTest> writer = new GenericDatumWriter<CloudTest>();
+		DatumWriter<BltNoLeverageColumn> writer = new GenericDatumWriter<BltNoLeverageColumn>();
 		writer.setSchema(schema);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		Encoder encoder = EncoderFactory.get().jsonEncoder(schema, out);
-		CloudTest ct=dao.queryById(1);
+		BltNoLeverageColumn ct=dao.queryById(1);
 		System.out.println(ct);
 		writer.write(ct, encoder);
 		encoder.flush();
 		out.close();
 		System.out.println(out.toString());
 
-		DatumReader<CloudTest> reader = new GenericDatumReader<CloudTest>();
+		DatumReader<BltNoLeverageColumn> reader = new GenericDatumReader<BltNoLeverageColumn>();
 		reader.setSchema(schema);
 		Decoder decoder = DecoderFactory.get().jsonDecoder(schema, out.toString());
 		GenericRecord result = reader.read(null, decoder);
@@ -150,9 +150,9 @@ public class AvroTest {
 	 *            is the operater of jdbc.
 	 * @throws IOException
 	 */
-	public static void testSingleBinary(Schema schema, CloudTestDao dao) throws IOException {
+	public static void testSingleBinary(Schema schema, BltNoLeverageColumnDao dao) throws IOException {
 
-		DatumWriter<CloudTest> writer = new GenericDatumWriter<CloudTest>();
+		DatumWriter<BltNoLeverageColumn> writer = new GenericDatumWriter<BltNoLeverageColumn>();
 		writer.setSchema(schema);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		Encoder encoder = EncoderFactory.get().binaryEncoder(out, null);
@@ -161,7 +161,7 @@ public class AvroTest {
 		out.close();
 		System.out.println(out.toString());
 		
-		DatumReader<CloudTest> reader = new GenericDatumReader<CloudTest>();
+		DatumReader<BltNoLeverageColumn> reader = new GenericDatumReader<BltNoLeverageColumn>();
 		reader.setSchema(schema);
 		Decoder decoder = DecoderFactory.get().binaryDecoder(out.toByteArray(), null);
 		GenericRecord result = reader.read(null, decoder);

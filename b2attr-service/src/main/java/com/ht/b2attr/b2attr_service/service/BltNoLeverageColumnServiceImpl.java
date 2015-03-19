@@ -13,11 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ht.b2attr.b2attr_service.logic.Logic;
-import com.ht.b2attr.b2attr_service.schema.CloudTest;
-import com.ht.b2attr.b2attr_service.schema.CloudTestsList;
+import com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn;
+import com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumnList;
 
 @Component
-public class CloudTestServiceImpl implements CloudTestService {
+public class BltNoLeverageColumnServiceImpl implements BltNoLeverageColumnService {
 
 	@Autowired
 	private Logic logic;
@@ -37,12 +37,12 @@ public class CloudTestServiceImpl implements CloudTestService {
 	}
 
 	@Override
-	public byte[] retrieveAllCloudTest() throws IOException {
+	public byte[] retrieveAllBltNoLColumns() throws IOException {
 
-		CloudTestsList cloudTestsList = logic.retrieveAllCloudTest();
+		BltNoLeverageColumnList cloudTestsList = logic.retrieveAllCloudTest();
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-		dataFileWriter.create(CloudTestsList.SCHEMA$, outputStream);
+		dataFileWriter.create(BltNoLeverageColumnList.SCHEMA$, outputStream);
 		dataFileWriter.append(cloudTestsList);
 		dataFileWriter.close();
 		System.out.println(outputStream.toString());
@@ -51,28 +51,23 @@ public class CloudTestServiceImpl implements CloudTestService {
 	}
 
 	@Override
-	public byte[] retrieveCloudTestById(int id) throws IOException {
-		CloudTest ct = logic.retrieveCloudTestById(id);
+	public byte[] retrieveBltNoLColumn(int id) throws IOException {
+		BltNoLeverageColumn ct = logic.retrieveCloudTestById(id);
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-		dataFileWriter.create(CloudTest.SCHEMA$, outputStream);
+		dataFileWriter.create(BltNoLeverageColumn.SCHEMA$, outputStream);
 		dataFileWriter.append(ct);
 		dataFileWriter.close();
 		return outputStream.toByteArray();
 	}
 
 	@Override
-	public int createCloudTest(int id, Map<String, Object> fieldMap) throws ParseException {
+	public int updateBltNoColumn(int id, Map<String, Object> fieldMap) throws ParseException {
 		return logic.createCloudTest(id, fieldMap);
 	}
 
 	@Override
-	public int updateCloudTestById(int id, Map<String, Object> fieldMap) throws ParseException {
-		return logic.updateCloudTestById(id, fieldMap);
-	}
-
-	@Override
-	public Response deleteCloudTestById(int id) {
+	public Response deleteBltNoLColumn(int id) {
 		return logic.deleteCloudTestById(id);
 	}
 
