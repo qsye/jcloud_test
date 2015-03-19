@@ -8,10 +8,6 @@ import java.util.Map;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.file.SeekableByteArrayInput;
 import org.apache.avro.file.SeekableInput;
@@ -19,38 +15,37 @@ import org.apache.avro.io.DatumReader;
 import org.apache.avro.specific.SpecificDatumReader;
 import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.junit.Assert;
+import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest extends TestCase {
-	/**
-	 * Create the test case
-	 *
-	 * @param testName
-	 *            name of the test case
-	 */
-	public AppTest(String testName) {
-		super(testName);
+public class AppTest {
+	@Test
+	public void test() {
+		long id = testCreate();
+		if (id <= 0) {
+			System.out.println("insert failed  id=" + id);
+			Assert.assertTrue(false);
+		}
+		System.out.println("insert success  id=" + id);
+		int resultUpdate = testUpdate(id);
+		if (resultUpdate <= 0) {
+			System.out.println("update failed  result=" + resultUpdate);
+			Assert.assertTrue(false);
+		}
+		System.out.println("update success  id=" + id);
+		testDelete(id);
+		System.out.println("delete success");
 	}
 
-	/**
-	 * @return the suite of tests being tested
-	 */
-	public static Test suite() {
-		return new TestSuite(AppTest.class);
-	}
-
-	/**
-	 * Test get all cloud_test
-	 * 
-	 * @throws IOException
-	 */
+	@Test
 	public void testApp() throws IOException {
 		String baseAddress = "http://172.16.25.37:8080/cloud/rest";
-		byte[] result = WebClient.create(baseAddress).path("/cloudTests").accept(MediaType.APPLICATION_JSON).get(byte[].class);
+		byte[] result = WebClient.create(baseAddress).path("/BltNoLColumns").accept(MediaType.APPLICATION_JSON).get(byte[].class);
 		System.out.println(new String(result));
 
 		DatumReader<SpecificRecordBase> ctDatumReader = new SpecificDatumReader<SpecificRecordBase>();
@@ -73,42 +68,37 @@ public class AppTest extends TestCase {
 				dataFileReader.close();
 			}
 		}
-		assertTrue(true);
+		Assert.assertTrue(true);
 	}
 
-	/**
-	 * Test create Cloud_test
-	 */
-	public void testCreate() {
-		String baseAddress = "http://172.16.25.37:8080/cloud/rest";
+	public long testCreate() {
 		Map<String, Object> fieldMap = new HashMap<String, Object>();
 		fieldMap.put("t_attribute", "this is attribute");
 		fieldMap.put("t_desc", "this is desc");
 		fieldMap.put("t_dt", new Date().toString());
 
-		int result = WebClient.create("http://172.16.25.37:8080/cloud/rest/cCloudTest/10").accept(MediaType.APPLICATION_JSON).header("content-type", "application/json")
+		long result = WebClient.create("http://172.16.25.37:8080/cloud/rest/BltNoLColumns/0").accept(MediaType.APPLICATION_JSON).header("content-type", "application/json")
 				.post(JSON.toJSONString(fieldMap), int.class);
 		System.out.println(result);
-		assertEquals(1, result);
+		return result;
 	}
 
-	public void testUpdate() {
-		Map<String, Object> map = new HashMap<String, Object>();
+	public int testUpdate(long id) {
 		Map<String, Object> fieldMap = new HashMap<String, Object>();
 		fieldMap.put("t_attribute", "this is attribute update");
 		fieldMap.put("t_desc", "this is desc update");
 		fieldMap.put("t_dt", new Date().toString());
 
-		int result = WebClient.create("http://172.16.25.37:8080/cloud/rest/uCloudTest/10").accept(MediaType.APPLICATION_JSON).header("content-type", "application/json")
+		int result = WebClient.create("http://172.16.25.37:8080/cloud/rest/BltNoLColumns/" + id).accept(MediaType.APPLICATION_JSON).header("content-type", "application/json")
 				.post(JSON.toJSONString(fieldMap), int.class);
 		System.out.println(result);
-		assertEquals(1, result);
+		return result;
 	}
 
-	public void testDelete() {
+	public void testDelete(long id) {
 		String baseAddress = "http://172.16.25.37:8080/cloud/rest";
-		Response response = WebClient.create(baseAddress).path("/dCloudTest/10").accept(MediaType.APPLICATION_JSON).delete();
+		Response response = WebClient.create(baseAddress).path("/BltNoLColumns/" + id).accept(MediaType.APPLICATION_JSON).delete();
 		System.out.println(response.getStatus());
-		assertEquals(200, response.getStatus());
+		Assert.assertEquals(200, response.getStatus());
 	}
 }

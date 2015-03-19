@@ -1,6 +1,5 @@
 package com.ht.b2attr.b2attr_service.logic;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
@@ -10,8 +9,6 @@ import java.util.Map;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.avro.file.DataFileWriter;
-import org.apache.avro.specific.SpecificRecordBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,13 +21,13 @@ import com.ht.b2attr.b2attr_service.util.DateUtil;
 public class Logic {
 	// injection by spring
 	@Autowired
-	private BltNoLeverageColumnDao jdbcCloudTestDAO;
+	private BltNoLeverageColumnDao bltNoLeverageColumnDao;
 
 	public BltNoLeverageColumnList retrieveAllCloudTest() throws IOException {
 
 		System.out.print("Get a request to method:");
 		System.out.println("retrieveAllCloudTest");
-		List<BltNoLeverageColumn> list = jdbcCloudTestDAO.queryAll();
+		List<BltNoLeverageColumn> list = bltNoLeverageColumnDao.queryAll();
 		// for (int i = 1; i < 3; i++) {
 		// CloudTest ct = new CloudTest();
 		// ct.setTId(i);
@@ -52,25 +49,23 @@ public class Logic {
 		// ct.setTAttribute("column3");
 		// ct.setTDt(new Date());
 		// return ct;
-		return jdbcCloudTestDAO.queryById(id);
-		
+		return bltNoLeverageColumnDao.queryById(id);
+
 	}
 
-	public int createCloudTest(int id, Map<String, Object> fieldMap) throws ParseException {
+	public int createCloudTest(Map<String, Object> fieldMap) throws ParseException {
 		System.out.print("Get a request to method:");
 		System.out.println("createCloudTest");
-		System.out.println(id);
 		System.out.println(fieldMap);
 		BltNoLeverageColumn ct = new BltNoLeverageColumn();
-		ct.setTId(id);
 		ct.setTDesc(fieldMap.get("t_desc").toString());
 		ct.setTAttribute(fieldMap.get("t_attribute").toString());
 		Date dt = DateUtil.parse(fieldMap.get("t_dt").toString());
 		ct.setTDt(dt);
-		return jdbcCloudTestDAO.insertCloudTest(ct);
+		return bltNoLeverageColumnDao.insertBltNoLeverageColumn(ct);
 	}
 
-	public int updateCloudTestById(int id, Map<String, Object> fieldMap) throws ParseException {
+	public long updateCloudTestById(int id, Map<String, Object> fieldMap) throws ParseException {
 		System.out.print("Get a request to method:");
 		System.out.println("updateCloudTestById");
 		BltNoLeverageColumn ct = new BltNoLeverageColumn();
@@ -79,13 +74,17 @@ public class Logic {
 		ct.setTAttribute(fieldMap.get("t_attribute").toString());
 		Date dt = DateUtil.parse(fieldMap.get("t_dt").toString());
 		ct.setTDt(dt);
-		return jdbcCloudTestDAO.updateCloudTest(ct);
+		if (bltNoLeverageColumnDao.updateBltNoLeverageColumn(ct) > 0) {
+			return id;
+		} else {
+			return 0;
+		}
 	}
 
 	public Response deleteCloudTestById(int id) {
 		System.out.print("Get a request to method:");
 		System.out.println("deleteCloudTestById");
-		if (jdbcCloudTestDAO.deleteCloudTestById(id) > 0) {
+		if (bltNoLeverageColumnDao.deleteBltNoLeverageColumnById(id) > 0) {
 			return Response.ok().build();
 		} else {
 			return Response.status(Status.BAD_REQUEST).build();

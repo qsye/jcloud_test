@@ -29,7 +29,7 @@ public class App {
 		resourceClassList.add(BltNoLeverageColumnServiceImpl.class);
 
 		List<ResourceProvider> resourceProviderList = new ArrayList<ResourceProvider>();
-		resourceProviderList.add(new SingletonResourceProvider(ctx.getBean("cloudTestServiceImpl", BltNoLeverageColumnServiceImpl.class)));
+		resourceProviderList.add(new SingletonResourceProvider(ctx.getBean("bltNoLeverageColumnServiceImpl", BltNoLeverageColumnServiceImpl.class)));
 
 		List<Object> providerList = new ArrayList<Object>();
 		providerList.add(new JacksonJsonProvider());

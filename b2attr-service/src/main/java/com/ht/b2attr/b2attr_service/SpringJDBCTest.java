@@ -8,8 +8,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.ht.b2attr.b2attr_service.DAO.BltNoLeverageColumnDao;
 import com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn;
+
 /**
  * It is a case of spring jdbc template test. It test insert/update/delete/query from DB.
+ * 
  * @author Cloud_team.
  *
  */
@@ -35,13 +37,13 @@ public class SpringJDBCTest {
 		ct_insert.setTDt(new Date());
 		ct_insert.setTDesc("test insert with jdbc template");
 		ct_insert.setTAttribute("column4");
-		System.out.println(dao.insertCloudTest(ct_insert) > 0 ? "insert success" : "insert failed");
+		System.out.println(dao.insertBltNoLeverageColumn(ct_insert) > 0 ? "insert success" : "insert failed");
 		System.out.println();
 
 		List<BltNoLeverageColumn> list = dao.queryAll();
 		System.out.println("cloud list:" + list);
 		System.out.println();
-		
+
 		BltNoLeverageColumn ct = dao.queryById(4);
 		System.out.println(ct.getTAttribute());
 		System.out.println();
@@ -49,13 +51,13 @@ public class SpringJDBCTest {
 		ct_insert.setTAttribute("column41");
 		ct_insert.setTDesc("test update");
 		ct_insert.setTDt(new Date());
-		System.out.println(dao.updateCloudTest(ct_insert) > 0 ? "update success" : "update failed");
+		System.out.println(dao.updateBltNoLeverageColumn(ct_insert) > 0 ? "update success" : "update failed");
 		System.out.println();
-		
-		System.out.println(dao.deleteCloudTestById(0) > 0 ? "delete success" : "delete failed");
+
+		System.out.println(dao.deleteBltNoLeverageColumnById(0) > 0 ? "delete success" : "delete failed");
 		System.out.println();
-		
-		System.out.println(dao.deleteCloudTestById(4) > 0 ? "delete success" : "delete failed");
+
+		System.out.println(dao.deleteBltNoLeverageColumnById(4) > 0 ? "delete success" : "delete failed");
 	}
 
 }
