@@ -8,7 +8,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.ht.b2attr.b2attr_service.DAO.BltNoLeverageColumnDao;
 import com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn;
-
 /**
  * It is a case of spring jdbc template test. It test insert/update/delete/query from DB.
  * 
@@ -43,7 +42,6 @@ public class SpringJDBCTest {
 		List<BltNoLeverageColumn> list = dao.queryAll();
 		System.out.println("cloud list:" + list);
 		System.out.println();
-
 		BltNoLeverageColumn ct = dao.queryById(4);
 		System.out.println(ct.getTAttribute());
 		System.out.println();

@@ -23,11 +23,13 @@ public class Logic {
 	@Autowired
 	private BltNoLeverageColumnDao bltNoLeverageColumnDao;
 
+
 	public BltNoLeverageColumnList retrieveAllCloudTest() throws IOException {
 
 		System.out.print("Get a request to method:");
 		System.out.println("retrieveAllCloudTest");
 		List<BltNoLeverageColumn> list = bltNoLeverageColumnDao.queryAll();
+
 		// for (int i = 1; i < 3; i++) {
 		// CloudTest ct = new CloudTest();
 		// ct.setTId(i);

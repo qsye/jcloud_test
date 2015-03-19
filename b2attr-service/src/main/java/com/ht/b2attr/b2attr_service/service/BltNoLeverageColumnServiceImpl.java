@@ -69,6 +69,7 @@ public class BltNoLeverageColumnServiceImpl implements BltNoLeverageColumnServic
 		} else {
 			return logic.updateCloudTestById(id, fieldMap);
 		}
+
 	}
 
 	@Override
