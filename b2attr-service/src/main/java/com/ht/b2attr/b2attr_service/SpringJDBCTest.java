@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.ht.b2attr.b2attr_service.DAO.CloudTestDao;
-import com.ht.b2attr.b2attr_service.schema.CloudTest;
+import com.ht.b2attr.b2attr_service.DAO.BltNoLeverageColumnDao;
+import com.ht.b2attr.b2attr_service.schema.BltNoLeverageColumn;
 /**
  * It is a case of spring jdbc template test. It test insert/update/delete/query from DB.
  * @author Cloud_team.
@@ -28,9 +28,9 @@ public class SpringJDBCTest {
 		// System.out.println(ds.getT_id());
 		// System.out.println(ds.getT_attribute());
 		// spring jdbc
-		CloudTestDao dao = ctx.getBean("jdbcCloudTestDAO", CloudTestDao.class);
+		BltNoLeverageColumnDao dao = ctx.getBean("BltNoLeverageColumnDao", BltNoLeverageColumnDao.class);
 
-		CloudTest ct_insert = new CloudTest();
+		BltNoLeverageColumn ct_insert = new BltNoLeverageColumn();
 		ct_insert.setTId(4);
 		ct_insert.setTDt(new Date());
 		ct_insert.setTDesc("test insert with jdbc template");
@@ -38,11 +38,11 @@ public class SpringJDBCTest {
 		System.out.println(dao.insertCloudTest(ct_insert) > 0 ? "insert success" : "insert failed");
 		System.out.println();
 
-		List<CloudTest> list = dao.queryAll();
+		List<BltNoLeverageColumn> list = dao.queryAll();
 		System.out.println("cloud list:" + list);
 		System.out.println();
 		
-		CloudTest ct = dao.queryById(4);
+		BltNoLeverageColumn ct = dao.queryById(4);
 		System.out.println(ct.getTAttribute());
 		System.out.println();
 

@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.ht.b2attr.b2attr_service.service.CloudTestServiceImpl;
+import com.ht.b2attr.b2attr_service.service.BltNoLeverageColumnServiceImpl;
 
 /**
  * It is a case of RESTful/cxf(jetty) test. It start a listener of http.
@@ -26,10 +26,10 @@ public class App {
 
 	public static void testRESTful(ApplicationContext ctx) {
 		List<Class<?>> resourceClassList = new ArrayList<Class<?>>();
-		resourceClassList.add(CloudTestServiceImpl.class);
+		resourceClassList.add(BltNoLeverageColumnServiceImpl.class);
 
 		List<ResourceProvider> resourceProviderList = new ArrayList<ResourceProvider>();
-		resourceProviderList.add(new SingletonResourceProvider(ctx.getBean("cloudTestServiceImpl", CloudTestServiceImpl.class)));
+		resourceProviderList.add(new SingletonResourceProvider(ctx.getBean("cloudTestServiceImpl", BltNoLeverageColumnServiceImpl.class)));
 
 		List<Object> providerList = new ArrayList<Object>();
 		providerList.add(new JacksonJsonProvider());
