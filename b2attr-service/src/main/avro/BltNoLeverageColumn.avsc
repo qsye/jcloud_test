@@ -1,0 +1,1 @@
+"{\"type\":\"record\",\"name\":\"BltNoLeverageColumn\",\"namespace\":\"com.ht.b2attr.b2attr_service.schema\",\"fields\":[{\"name\":\"t_id\",\"type\":\"long\"},{\"name\":\"t_attribute\",\"type\":\"string\"},{\"name\":\"t_desc\",\"type\":[\"string\",\"null\"]},{\"name\":\"t_dt\",\"type\":{\"type\":\"record\",\"name\":\"Date\",\"namespace\":\"java.util\",\"fields\":[]}}]}
